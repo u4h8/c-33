@@ -1,3 +1,4 @@
+//nicknameing phisics engion components
 const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
@@ -18,6 +19,7 @@ function preload() {
 
 function setup(){
     var canvas = createCanvas(1200,400);
+    //create ur own engion and world in it
     engine = Engine.create();
     world = engine.world;
 
@@ -42,7 +44,7 @@ function setup(){
 
     bird = new Bird(200,50);
 
-    //log6 = new Log(230,180,80, PI/2);
+   //log6 = new Log(230,180,80, PI/2);
     slingshot = new SlingShot(bird.body,{x:200, y:50});
 }
 
@@ -81,9 +83,9 @@ function draw(){
 }
 
 function mouseDragged(){
-    //if (gameState!=="launched"){
+   if (gameState!=="launched"){
         Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
-    //}
+  }
 }
 
 
@@ -94,6 +96,8 @@ function mouseReleased(){
 
 function keyPressed(){
     if(keyCode === 32){
+        bird.trajectory = [];
+        Matter.Body.setPosition(bird.body, {x:200, y:50});
        slingshot.attach(bird.body);
     }
 }
